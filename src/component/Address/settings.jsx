@@ -1,14 +1,16 @@
-import {Card, Icon, Text, OptionList, Button, Popover} from "@shopify/polaris";
+import {Card, Icon, Text, OptionList, Button, Popover, TextField} from "@shopify/polaris";
 import {Address} from "./Addresses";
 import './settings.css'
 import {ChevronLeftIcon, ChevronRightIcon} from "@shopify/polaris-icons";
 import React, {useCallback, useState} from "react";
-import {buildTimeValue} from "@testing-library/user-event/dist/utils";
 export function Settings(){
         const [selected, setSelected] = useState([]);
         const [selected2, setSelected2] = useState([]);
         const [popoverActive, setPopoverActive] = useState(true);
         const [popoverActive2, setPopoverActive2] = useState(true);
+           const [weight , setWeight] = useState('')
+           const [weight2 , setWeight2] = useState('')
+
 
         const togglePopoverActive = useCallback(
             () => setPopoverActive((popoverActive) => !popoverActive),
@@ -81,67 +83,91 @@ const activator2 = (
                     </Card>
                 </div>
             </div>
-            <div>
+            <div style={{width: '61%', marginTop: '5px',padding: '30px'}}>
                 <Card>
-                        <Text variant={'headingMd'} as={'h1'}>S&S Weight & Fees Calculator</Text>
-                    <div>
-                        <Text as={'h3'} variant={'headingMd'}>
-                            Shipping Routes
-                        </Text>
-
-                    </div>
-                    <div style={{display: "flex", justifyContent: "flex-start", gap: "50px"}}   >
-                        <div >
-                            <Popover
-                                active={popoverActive}
-                                activator={activator}
-                                onClose={togglePopoverActive}
-                            >
-                                <OptionList
-                                    onChange={setSelected}
-                                    options={[
-                                        {value: 'PAK', label: 'PAK'},
-                                        {value: 'Italy', label: 'Italy',},
-                                        {value: 'Egypt', label: 'Egypt'},
-                                        {value: 'USA', label: 'USA',},
-                                    ]}
-                                    selected={selected}
-                                />
-                            </Popover>
-                        </div>
+                        <Text variant={'headingXl'} as={'h1'}>S&S Weight & Fees Calculator</Text>
+                    <div style={{padding:'20px'}}>
                         <div>
-                            <Popover
-                                activator={activator2}
-                                active={popoverActive2}
-                                onClose={togglePopoverActive2}>
-                                <OptionList selected={selected2} onChange={setSelected2}
-                                            options={[
-                                                {
-                                                    value: 'Italy',
-                                                    label: 'Italy',
-                                                }, {
-                                                    value: 'USA',
-                                                    label: 'USA',
-                                                },
-                                                {
-                                                    value: 'Italy',
-                                                    label: 'Italy',
-                                                }, {value: 'PAK', label: 'PAK'},
+                            <Text as={'h3'} variant={'headingLg'}>
+                                Shipping Routes
+                            </Text>
 
-                                            ]}
-
-
-                                />
-
-                            </Popover>
                         </div>
-                    </div>
-                    <div>
-                        <Text as={'h2'}>Weight</Text>
+                        <div style={{display: "flex", justifyContent: "flex-start", gap: "50px",marginTop:'20px'}}>
+                            <div>
+                                <Popover
+                                    active={popoverActive}
+                                    activator={activator}
+                                    onClose={togglePopoverActive}
+                                >
+                                    <OptionList
+                                        onChange={setSelected}
+                                        options={[
+                                            {value: 'PAK', label: 'PAK'},
+                                            {value: 'Italy', label: 'Italy',},
+                                            {value: 'Egypt', label: 'Egypt'},
+                                            {value: 'USA', label: 'USA',},
+                                        ]}
+                                        selected={selected}
+                                    />
+                                </Popover>
+                            </div>
+                            <div>
+                                <Popover
+                                    activator={activator2}
+                                    active={popoverActive2}
+                                    onClose={togglePopoverActive2}>
+                                    <OptionList selected={selected2} onChange={setSelected2}
+                                                options={[
+                                                    {
+                                                        value: 'Italy',
+                                                        label: 'Italy',
+                                                    }, {
+                                                        value: 'USA',
+                                                        label: 'USA',
+                                                    },
+                                                    {
+                                                        value: 'Italy',
+                                                        label: 'Italy',
+                                                    }, {value: 'PAK', label: 'PAK'},
+
+                                                ]}
+
+
+                                    />
+
+                                </Popover>
+                            </div>
+                        </div>
+                        <div style={{marginTop:'20px'}}><Text variant={'headingMd'} as={'h2'}>Weight</Text></div>
+                        <div style={{width: '20%'}}><TextField
+                            size={'medium'}
+                            autoComplete={'off'}
+                            label={''}
+                            type={'number'}
+                            value={weight}
+                            suffix={'KG'}
+
+                            onChange={(value) => {
+                                setWeight(value)
+                            }}>
+                        </TextField></div>
+                        <div style={{marginBottom:'20px'}}><Text variant={'headingMd'} as={'h2'}>Final Price</Text></div>
+
+                        <div style={{width: '20%'}}><TextField
+                            size={'medium'}
+                            autoComplete={'off'}
+                            label={'Price Of 1KG'}
+                            type={'number'}
+                            value={weight2}
+                            prefix={'$'}
+                            onChange={(value) => {
+                                setWeight2(value)
+                            }}>
+                        </TextField></div>
+
 
                     </div>
-
-
 
 
                 </Card>
