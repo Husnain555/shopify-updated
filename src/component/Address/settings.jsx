@@ -4,10 +4,11 @@ import './settings.css'
 import {ChevronLeftIcon, ChevronRightIcon} from "@shopify/polaris-icons";
 import React, {useCallback, useState} from "react";
 export function Settings(){
-        const [selected, setSelected] = useState([]);
-        const [selected2, setSelected2] = useState([]);
-        const [popoverActive, setPopoverActive] = useState(true);
-        const [popoverActive2, setPopoverActive2] = useState(true);
+        const [pickup, setPickup] = useState([]);
+
+        const [desigination, setDesigination] = useState([]);
+        const [popoverActive, setPopoverActive] = useState(false);
+        const [popoverActive2, setPopoverActive2] = useState(false);
            const [weight , setWeight] = useState('')
            const [weight2 , setWeight2] = useState('')
 
@@ -24,12 +25,12 @@ export function Settings(){
 
     const activator = (
             <Button onClick={togglePopoverActive} disclosure>
-                Pickup:<span style={{ marginLeft: '10px' }}/>{selected.length > 0 ? selected[0] : ''}
+                Pickup:<span style={{ marginLeft: '10px' }}/>{pickup.length > 0 ? pickup[0] : ''}
             </Button>
 );
 const activator2 = (
             <Button onClick={togglePopoverActive2} disclosure>
-                Designation:<span style={{ marginLeft: '10px' }}/>{selected2.length > 0 ? selected2[0] : ''}
+                Designation:<span style={{ marginLeft: '10px' }}/>{desigination.length > 0 ? desigination[0] : ''}
             </Button>
 );
 
@@ -101,14 +102,14 @@ const activator2 = (
                                     onClose={togglePopoverActive}
                                 >
                                     <OptionList
-                                        onChange={setSelected}
+                                        onChange={setPickup}
                                         options={[
                                             {value: 'PAK', label: 'PAK'},
                                             {value: 'Italy', label: 'Italy',},
                                             {value: 'Egypt', label: 'Egypt'},
                                             {value: 'USA', label: 'USA',},
                                         ]}
-                                        selected={selected}
+                                        selected={pickup}
                                     />
                                 </Popover>
                             </div>
@@ -117,7 +118,7 @@ const activator2 = (
                                     activator={activator2}
                                     active={popoverActive2}
                                     onClose={togglePopoverActive2}>
-                                    <OptionList selected={selected2} onChange={setSelected2}
+                                    <OptionList selected={desigination} onChange={setDesigination}
                                                 options={[
                                                     {
                                                         value: 'Italy',
