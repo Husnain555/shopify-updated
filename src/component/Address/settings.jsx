@@ -74,7 +74,7 @@ const activator2 = (
                             </div>
                         </div>
                         <div style={{marginTop: '30px', display: 'flex', justifyContent: 'flex-end'}}>
-                            <button style={{border: 'none', background: 'transparent', cursor: 'pointer'}}><Icon
+                            <button  style={{border: 'none', background: 'transparent', cursor: 'pointer'}}><Icon
                                 source={ChevronLeftIcon} tone="base"/></button>
                             <button style={{border: 'none', background: 'transparent', cursor: 'pointer'}}><Icon
                                 source={ChevronRightIcon} tone="base"/></button>
